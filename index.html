@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-64H70TSRE9"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-64H70TSRE9');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Moi University Past Papers</title>
@@ -141,13 +132,14 @@ margin-top:10px;
 }
 
 .whatsapp-btn{
-display:inline-block;
+display:table;
 background:#25D366;
 color:white;
 text-decoration:none;
 padding:15px 25px;
 border-radius:10px;
-margin-top:10px;
+margin:10px auto 0;
+text-align:center;
 }
 
 footer{
@@ -182,6 +174,10 @@ font-size:18px;
 
 .card{
 font-size:18px;
+}
+
+.whatsapp-btn{
+max-width:100%;
 }
 
 }
@@ -234,30 +230,11 @@ SEARCH
 <div class="card">LMC 211 - Introduction to Media Theories</div>
 <div class="card">LMC 222 - Non Verbal Communication</div>
 
-</div>
-
-<div class="support">
-
-<h2>Support This Project</h2>
-
-<p>
-This platform is free for students.
-If you would like to support and help add more papers,
-you can support via M-Pesa:
-</p>
-
-<h3>0741186742</h3>
-
-<button class="copy-btn" onclick="copyNumber()">
-📋 Copy Number
-</button>
-
-<br><br>
-
 <a
 class="whatsapp-btn"
 href="https://wa.me/254741186742"
-target="_blank">
+target="_blank"
+rel="noopener noreferrer">
 💬 Problems or Inquiries? Contact Us on WhatsApp
 </a>
 
@@ -283,31 +260,46 @@ const papers = [
 {
 code:"eng323",
 name:"ENG 323 - English For Public Relations",
-image:"papers/eng323.jpg"
+images:[
+"papers/eng323-1.jpg",
+"papers/eng323-2.jpg",
+"papers/eng323-3.jpg"
+]
 },
 
 {
-code:"eng121",
-name:"ENG 121 - Academic Writing Skills",
-image:"eng121.jpg"
+code:"eng411",
+name:"ENG 411 - Practical English Stylistics",
+images:[
+"papers/eng411-1.jpg",
+"papers/eng411-2.jpg",
+"papers/eng411-3.jpg",
+"papers/eng411-4.jpg"  
+]
 },
 
 {
-code:"lmc210",
-name:"LMC 210 - Communication Theory",
-image:"papers/lmc210.jpg"
+code:"lmc411",
+name:"LMC 411 - Comparative Media Law & Governance",
+image:"papers/lmc411-1.jpg"
 },
 
 {
-code:"lmc211",
-name:"LMC 211 - Introduction to Media Theories",
-image:"papers/lmc211.jpg"
+code:"sas401",
+name:"SAS 401 - Policy Analysis And Project Management",
+image:"papers/sas401-1.jpg"
 },
 
 {
-code:"lmc222",
-name:"LMC 222 - Non Verbal Communication",
-image:"papers/lmc222.jpg"
+code:"lmc412",
+name:"LMC 412 - Gender Empowerment Film",
+image:"papers/lmc412-1.jpg"
+},
+
+{
+code:"lmc421",
+name:"LMC 421 - Reporting Disasters",
+image:"papers/lmc421-1.jpg"
 }
 
 ];
@@ -347,26 +339,43 @@ let html="";
 
 matches.forEach(p=>{
 
+html += `<h2>${p.name}</h2>`;
+
+const images = p.images || [p.image];
+
+images.forEach((img,index)=>{
+
 html += `
 
-<h2>${p.name}</h2>
+<div style="text-align:center; margin-bottom:25px;">
 
-<img src="${p.image}">
+<h3 style="margin-top:15px;">
+Page ${index+1}
+</h3>
+
+<img
+src="${img}"
+alt="${p.name} - Page ${index+1}"
+>
 
 <br>
 
 <a
-href="${p.image}"
+href="${img}"
 download
 class="download-btn">
 
-DOWNLOAD PAPER
+DOWNLOAD PAGE ${index+1}
 
 </a>
 
-<br><br>
+</div>
 
 `;
+
+});
+
+html += "<br><br>";
 
 });
 
